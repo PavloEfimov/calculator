@@ -26,7 +26,7 @@ function displayDigits(e) {
     return;
   }
   if(regExp.test(displayTextContent)){
-    alert('lastTest!');
+    alert('больше трех цифр после точки - нельзя!');
     return;
   }
   if (display.textContent === "0") {
@@ -53,14 +53,17 @@ function equalOpern(e) {
   switch (operation) {
     case "+":
       result = +prevValue + +currentValue;
+      result = round1000(result);
       operation = "";
       break;
     case "-":
       result = +prevValue - +currentValue;
+      result = round1000(result);
       operation = "";
       break;
     case "/":
       result = +prevValue / +currentValue;
+      result = round1000(result);
       operation = "";
       break;
     default:
@@ -77,6 +80,10 @@ function equalOpern(e) {
   prevValue = currentValue;
   currentValue = result;
   console.log("currentValue *-/", currentValue);
+
+  function round1000(res){
+    return Math.round(res*1000)/1000;
+  }
 }
 
 function clearPrev(e) {
